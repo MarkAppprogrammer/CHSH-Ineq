@@ -2,7 +2,8 @@
 The code in this folder is for a classical CHSH game between Alice and Bob. 
 
 ![alt text](image.png)
-In the code example alice is one qubit and bob is another. The goal of the game is to fullfil the equality $$x \wedge y = a \oplus b$$given $x, y$ which are either $1$ or $0$ and Alice and Bob respond with $a, b$. XOR (or $\oplus$) returns $1$ if one of its inputs is $1$ and logical AND ($\wedge$) returns $1$ when both inputs are the same.
+
+In the code example alice is one qubit and bob is another. The goal of the game is to fullfil the equality $$x \wedge y = a \oplus b$$ given $x, y$ which are either $1$ or $0$ and Alice and Bob respond with $a, b$. XOR (or $\oplus$) returns $1$ if one of its inputs is $1$ and logical AND ($\wedge$) returns $1$ when both inputs are the same.
 
 With classical techinquies this is only winable up to 75% of the time, but with quantum techinques we can win up to about 85% of the time (given by Tsirelson’s bound).
 
