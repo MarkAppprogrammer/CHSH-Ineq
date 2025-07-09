@@ -1,6 +1,8 @@
 # CHSH-Ineq
 Research project on the CHSH inequality
 
+Member Names: Seaena Kim, Adam Jurkowski, Mark Agib
+
 After cloning the repo run
 ```pip install requirments.txt```
 so we can all have the same libraries installed
