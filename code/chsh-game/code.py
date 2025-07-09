@@ -66,7 +66,8 @@ def plot_histograms(counts_list, legends, title):
     ax.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig("plot.png", dpi=300)
+    #plt.show()
 
 print("Plotting results...")
 plot_histograms(
