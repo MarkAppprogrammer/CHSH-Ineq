@@ -17,6 +17,28 @@ We then generate expecation valeues based on the given $x,y$ pairs. And using $$
 
 In papres they often refer to a "correlator" in the form $$\langle \psi| C|\psi\rangle$$ (an expecation value of $C$) where $C$ is the Hermitian Bell-CHSH operator $$C = (A +A')B + (A-A')B'$$ where $(A, A')$ and $(B, B')$ are the Bell opeartors (A for alice and B for Bob's operators). Note that Alice's opeartors commute with Bob's operators act on seperate hilbert spaces. This is simply a more mathematical way to communicate the inequaility. 
 
-TODO: Add ciations
+TODO: Add ciations [[1]](#1)
 
 I'll add more documentation explaing how it works.
+
+## References
+<a id="1">[1]</a>
+Janzing, D., & Wocjan, P. (2024).
+Quantum advantage in linear programming: A precise characterization.
+arXiv preprint arXiv:2409.07597v1.
+
+<a id="2">[2]</a>
+Yamasaki, H., & Kobayashi, H. (2024).
+Quantum algorithms for finding the minimum in a rotated sorted array.
+arXiv preprint arXiv:2403.15276.
+
+<a id="3">[3]</a>
+Shah, S. (2022).
+Kapitza Pendulum and Its Quantum Analog.
+Final paper, Department of Physics and Astronomy, University of Rochester.
+https://www.sas.rochester.edu/pas/undergraduate/kapitza-final-paper,-spring-2022,-stuti-shah.pdf
+
+<a id="4">[4]</a>
+Auffèves, A., & Grangier, P. (2024).
+Classical vs Quantum: A New Quantum Ontology to Resolve the Measurement Problem.
+arXiv preprint arXiv:2411.15536.
