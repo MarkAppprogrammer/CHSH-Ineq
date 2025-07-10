@@ -11,4 +11,4 @@ so we can all have the same libraries installed
 
 
 ## Research
-**(Working) Research Question**: How can we use the CHSH inequality to measure the strength of entanglement on distant qubits?
+**(Working) Research Question**: How can the CHSH in Bell's inequality be used to measure the strength of entanglement on distant qubits through a noisy channel?
