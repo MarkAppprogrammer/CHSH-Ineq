@@ -8,3 +8,7 @@ After cloning the repo run
 so we can all have the same libraries installed
 
 *Note: So that we don't write over each other make pull requests instead of a direct commit to the main branch.*
+
+
+## Research
+**(Working) Research Question**: How can we use the CHSH inequality to measure the strength of entanglement on distant qubits?
