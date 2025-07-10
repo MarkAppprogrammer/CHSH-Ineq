@@ -11,3 +11,5 @@ Circuit that we constructed for CHSH inequality considering $(x,y) = (1, 0)$
 
 TODO: Figure out ways were going to implement CNOTS across multiple qubits and use it for a quick noisy sim than we could do real hardware.
 
+Used the noise model from `ibm_brisbane` and made CHSH circuit with a distance of $10$ in betwen the two qubits. We calcuated $S = 2.33$ for the below simulation which was much lower than the previous exact simulation we were getting. So far it is still $\geq 2$ and violating CHSH inequality. May be becuase real life has even more un expected noise.
+![alt text](image-1.png)
