@@ -13,3 +13,6 @@ All of the code has an associated `README.md` for documentation purposes and [`c
 
 Some prelim results. Noisy simulation with noise model from `ibm_brisbane` with diffrent phases for entanglemnt 6 qubits away from each other:
 ![alt text](image.png)
+
+## Research
+**(Working) Research Question**: How can the CHSH parameter be used to measure the quality of entanglement on distant qubits based on noisy simulations of quantum computers?
