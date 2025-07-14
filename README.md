@@ -20,7 +20,7 @@ Some prelim results. Noisy simulation with noise model from `ibm_brisbane` with 
 ## Notes to the reader
 Some papers denote the CHSH inequality a little diffrently. It is denoted as 
 
-$$\left|\text{Tr}\left(\rho\: \mathcal{B}_{CHSH}\right) \right| \leq 2$$
+$$\left|\:\text{Tr}\left(\rho\: \mathcal{B}_{CHSH}\right) \right| \leq 2$$
 
 (*Note*: This stems from the fact that the expectation value of a observable is the trace of the density matrix and the obervable.)They describe the CHSH parameter or operator as 
 
@@ -44,4 +44,8 @@ which happens to be excatly what the CHSH operator was (check for yourself). Tha
 And the density matrix $\rho$ can be expressed as 
 
 $$\rho = \frac{1}{4}\left(I\otimes I + \vec{r} \cdot \vec{\sigma} \otimes I + I \otimes \vec{s} \cdot \vec{\sigma} + \sum_{n, m = 1}^{3}{T_{n,m}\sigma_n \otimes \sigma_m}\right) $$
+
+where $T_{n,m} = \text{Tr} \left[\rho \left(\sigma_i \otimes \sigma_j \right)\right]$ is the corrleation matrix and $\vec{r}$ and $\vec{s}$ are unit vectors in $\mathfrak{R}^3$. Now you might be wondering what does that all mean. Well its based on a represenation of the bloch sphere for two qubits. The $I \otimes I$ is the identiy operator applied on the first and second qubits. Its then added to the the dot product of the pauli matrices on the unit vector tensored with the identiy operator like $(r_1 \sigma_1 +r_2 \sigma_2 + r_3 \sigma_3) \otimes I$ that. You than do the same for the second qubit (on $\vec{s}$).
+
+Finally in the summation  $\sigma_n \otimes \sigma_m$ is all the possible combinations of pauli operators on $1$ and $2$ (hence the sum to $3$) and the correlation matrix descibes how strongly the qubits are coorleated along the axes. Since $\text{Tr} (\rho) =1 $ the factor $\frac{1}{4}$ keeps the trace 1.
 
