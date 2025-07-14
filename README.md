@@ -21,7 +21,7 @@ Had to regenerate data becuase I realized that the qubits it automaically chose 
 
 Image of which qubits are being used on the physical device and their layout for `ibm_brisbane`
 ![alt text](c_map.png)
-
+>>>>>>>>> Temporary merge branch 2
 
 ## Notes to the reader
 Some papers denote the CHSH inequality a little diffrently. It is denoted as 
