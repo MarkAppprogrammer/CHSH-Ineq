@@ -14,4 +14,4 @@ TODO: Figure out ways were going to implement CNOTS across multiple qubits and u
 Used the noise model from `ibm_brisbane` and made CHSH circuit with a distance of $10$ in betwen the two qubits. We calcuated $S = 2.33$ for the below simulation which was much lower than the previous exact simulation we were getting. So far it is still $\geq 2$ and violating CHSH inequality. May be becuase real life has even more un expected noise.
 ![alt text](image-1.png)
 
-Finally a good graph (for distance of 6 qubits): ![alt text](image-3.png)
+Finally a good graph (for distance of 6 qubits): ![alt text](brisbane-6.png)
