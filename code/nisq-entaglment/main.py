@@ -60,7 +60,7 @@ def get_data(backend_name: str, distance: int, phases: list, SHOTS=1024):
     noise_model = NoiseModel.from_backend(backend)
 
     simulator = AerSimulator(noise_model=noise_model)
-    transpiled_circuits = [transpile(circ, simulator, optimization_level=3) for circ in circuits]
+    transpiled_circuits = [transpile(circ, simulator, optimization_level=3, layout_method="trivial") for circ in circuits]
 
     results = simulator.run(transpiled_circuits, shots=SHOTS).result()
     counts_list = [results.get_counts(i) for i in range(len(transpiled_circuits))]

@@ -21,6 +21,10 @@ Results are contained in [`code/nisq-entaglment/results.json`](code/nisq-entaglm
 Some prelim results. Noisy simulation with noise model from `ibm_brisbane` with diffrent phases for entanglemnt 6 qubits away from each other:
 ![alt text](image.png)
 
+Had to regenerate data becuase I realized that the qubits it automaically chose were not next to each other. Do this by using `layout_method="trivial"` in the transpiler.
+
+Image of which qubits are being used on the physical device and their layout for `ibm_brisbane`
+![alt text](c_map.png)
 
 ## Notes to the reader
 Some papers denote the CHSH inequality a little diffrently. It is denoted as 
