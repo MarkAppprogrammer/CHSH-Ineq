@@ -32,14 +32,7 @@ $E(\vec{a},\vec{b}) = \text{Tr}[\rho (\vec{a} \cdot \vec{\sigma} \otimes \vec{b}
 
 and so when we substitute in for those terms we get
 
-$$
-\text{Tr} \left[ \rho \left( 
-\vec{a} \cdot \vec{\sigma} \otimes \vec{b} \cdot \vec{\sigma}
-+ \vec{a} \cdot \vec{\sigma} \otimes \vec{b}' \cdot \vec{\sigma}
-+ \vec{a}' \cdot \vec{\sigma} \otimes \vec{b} \cdot \vec{\sigma}
-- \vec{a}' \cdot \vec{\sigma} \otimes \vec{b}' \cdot \vec{\sigma}
-\right) \right]
-$$
+$$ \text{Tr} \left[ \rho \left(\vec{a} \cdot \vec{\sigma} \otimes \vec{b}\cdot \vec{\sigma} + \vec{a} \cdot \vec{\sigma} \otimes \vec{b}' \cdot\vec{\sigma} + \vec{a}' \cdot \vec{\sigma} \otimes \vec{b} \cdot \vec{\sigma} - \vec{a}' \cdot \vec{\sigma} \otimes \vec{b}' \cdot \vec{\sigma} \right) \right] $$
 
 (pretty long lol). But once we group (try this yourself) we get
 
