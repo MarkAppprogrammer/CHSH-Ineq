@@ -14,6 +14,11 @@ All of the code has an associated `README.md` for documentation purposes and [`c
 Some prelim results. Noisy simulation with noise model from `ibm_brisbane` with diffrent phases for entanglemnt 6 qubits away from each other:
 ![alt text](image.png)
 
+Had to regenerate data becuase I realized that the qubits it automaically chose were not next to each other. Do this by using `layout_method="trivial"` in the transpiler.
+
+Image of which qubits are being used on the physical device and their layout for `ibm_brisbane`
+![alt text](c_map.png)
+
 ## Research
 **(Working) Research Question**: How can the CHSH parameter be used to measure the quality of entanglement on distant qubits based on noisy simulations of quantum computers?
 
