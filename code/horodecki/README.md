@@ -15,3 +15,7 @@ Some may also say:
 $$B(\rho) \equiv \sqrt{\max[0, \mathcal{M}(\rho) - 1]}$$ 
 
 just so that the $B$ remains a real value function and we call it the Horodecki measure of the CHSH inequlaity. Its values range from $0$ to $1$ with larger meaning more entangled.
+
+### Circuit recreation
+
+So how is this any diffrent you may ask than the CHSH parameter becuase with some finecking you realize they are equal to each other. Well instead of simply using the coorelation functions and passing diffrent values the Horodecki Measure relies on a more anayltic way with more post processing to find the eigenvlaues.
