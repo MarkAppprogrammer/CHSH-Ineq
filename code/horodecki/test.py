@@ -49,7 +49,7 @@ def run_noiseless_simulation():
     
     return B_rho
 
-def run_noisy_simulation():
+def run_noisy_simulation(backend_name = "ibm_brisbane", num_qubits=2):
     """Run simulation with IBM Brisbane noise model"""
     print("\n" + "="*50)
     print("NOISY SIMULATION (IBM Brisbane)")
@@ -57,7 +57,7 @@ def run_noisy_simulation():
     
     try:
         service = QiskitRuntimeService()
-        backend = service.backend("ibm_brisbane")
+        backend = service.backend(backend_name)
         noise_model = NoiseModel.from_backend(backend)
         
         print(f"Noise model created from: {backend.name}")
@@ -66,7 +66,7 @@ def run_noisy_simulation():
         
         qc = QuantumCircuit(2)
         qc.h(0)
-        qc.cx(0, 1)
+        qc.cx(0, num_qubits - 1)
         
         qc_transpiled = transpile(qc, backend, optimization_level=3)
         
@@ -84,9 +84,9 @@ def run_noisy_simulation():
                 meas_qc.rx(np.pi/2, 0)
             
             if pauli_str[1] == 'X':
-                meas_qc.ry(-np.pi/2, 1)
+                meas_qc.ry(-np.pi/2, num_qubits - 1)
             elif pauli_str[1] == 'Y':
-                meas_qc.rx(np.pi/2, 1)
+                meas_qc.rx(np.pi/2, num_qubits - 1)
             
             meas_qc.measure_all()
             
