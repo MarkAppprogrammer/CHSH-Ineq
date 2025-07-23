@@ -57,9 +57,11 @@ def get_data(backend_name: str, distance: int, phases: list, SHOTS=1024):
 
     service = QiskitRuntimeService()
     backend = service.backend(backend_name)
-    noise_model = NoiseModel.from_backend(backend)
+    #noise_model = NoiseModel.from_backend(backend)
 
-    simulator = AerSimulator(noise_model=noise_model)
+    #simulator = AerSimulator(noise_model=noise_model)
+    simulator = AerSimulator()
+
     transpiled_circuits = [transpile(circ, simulator, optimization_level=3, layout_method="trivial") for circ in circuits]
 
     results = simulator.run(transpiled_circuits, shots=SHOTS).result()
@@ -94,7 +96,7 @@ def get_data(backend_name: str, distance: int, phases: list, SHOTS=1024):
     ]
 
     #gotta load current data first
-    with open("data/results.json", "r") as f:
+    with open("data/ideal_results.json", "r") as f:
         try:
             results = json.load(f)
         except json.JSONDecodeError:
@@ -102,7 +104,7 @@ def get_data(backend_name: str, distance: int, phases: list, SHOTS=1024):
 
     results.append(new_result)
 
-    with open("data/results.json", "w") as f:
+    with open("data/ideal_results.json", "w") as f:
         json.dump(results, f, indent=4)
 
 def graph_data(filePath):
@@ -194,14 +196,14 @@ def get_single_output(backend_name: str, distance: int, filePath: str) -> dict:
 
 
 if __name__ == "__main__":
-    # phases = np.linspace(-np.pi/2, 3*np.pi, 43)
-    # backend_names = ["ibm_brisbane", "ibm_torino", "ibm_sherbrooke"]
-    # distances = list(range(2, 13))
+    phases = np.linspace(-np.pi/2, 3*np.pi, 43)
+    backend_names = ["ibm_brisbane", "ibm_torino", "ibm_sherbrooke"]
+    distances = list(range(2, 13))
 
-    # for backend_name in backend_names:
-    #     for distance in distances:
-    #         get_data(backend_name, distance, phases, SHOTS=10000)
-    #         print(f"Logged data for {backend_name} at distance {distance}")
-    graph_single_output("ibm_torino", 2, "data/results.json")
+    for backend_name in backend_names:
+        for distance in distances:
+            get_data(backend_name, distance, phases, SHOTS=10000)
+            print(f"Logged data for {backend_name} at distance {distance}")
+    #graph_single_output("ibm_torino", 2, "data/ideal_results.json")
     #print(get_single_output("ibm_torino", 2, "data/results.json"))
-    #graph_data("data/results.json")
+    graph_data("data/ideal_results.json")
