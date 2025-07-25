@@ -49,12 +49,12 @@ Suppose $A$ and $B$ are Alice and Bob at opposite ends of a certain distance. Al
 
 There are four crucial elements of understanding quantum circuits and mechanics: Entanglement, Superposition, Interference, and Measurement. Entanglement is what Bell's equation and CHSH focus on the most, where two or more qubits become intertwined with each other and are able to exchange information instantaneously. Superposition is when a qubit is in two or more states, positions, or phases at once. For instance, a coin can be both heads and tails until physically measured. Interference occurs when qubits add or subtract, meaning their wave-like behavior causes qubits to augment or cancel each other out. Measurement takes away the quantum behavior of a qubit to cater to how people can see them. Therefore, measuring causes qubits in superposition, like the plus state, to collapse into one state, either 1 or 0. These quantum fields are hard to explore even today due to environmental noise and the delicacy of quantum entanglement and superposition circuits. 
 
-In Clauser and Freedman’s experiment, they utilized polarized photons from calcium atoms instead of Bell’s original intended electrons. These particles, called $\gamma_1$and $\gamma_2$, were measured $10$ feet apart and viewed by optical systems made up of two lenses, a wavelength filter, a removable and rotatable polarizer, and a single-photon detector. The following diagram depicts the system that Clauser and Freedman used: 
+In Clauser and Freedman’s experiment, they utilized polarized photons from calcium atoms instead of Bell’s original intended electrons. These particles, called $\gamma_1$and $\gamma_2$, were measured $10$ feet apart and viewed by optical systems made up of two lenses, a wavelength filter, a removable and rotatable polarizer, and a single-photon detector. The following diagram (\hyperref[fig:system-diagram]{Figure 1}) depicts the system that Clauser and Freedman used: 
 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figs/pic1.png}
-    \caption{}
+    \caption{Experimental apparatus for the 1972 test of Bell’s theorem using polarization-entangled photon pairs ($\gamma_1$, $\gamma_2$) from a calcium atomic cascade. Photons travel 10 feet through independent optical systems, each consisting of a lens, polarization filter (rotatable), wavelength filter, and single-photon detector. Coincidence rates $R(\varphi)$ and relative polarization angle $\varphi$ are recorded, testing the predictions of quantum mechanics against local hidden-variable theories.}
     \label{fig:system-diagram}
 \end{figure}
 
@@ -64,24 +64,39 @@ $$-1 \leq \Delta(\varphi) \leq 0$$
 where
 $$\Delta(\varphi) = \frac{3R(\varphi)}{R_0} - \frac{R(3\varphi)}{R_0} - \frac{R_1+R_2}{R_0}$$
 
-The following graph shows the quantum correlation between the coincidence rate defined by the angle of the polarizers, divided by the rate with both polarizers removed, and the angle. 
+The following graph (\hyperref[fig:angles-graph]{Figure 2}) shows the quantum correlation between the coincidence rate defined by the angle of the polarizers, divided by the rate with both polarizers removed, and the angle. 
 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figs/pic2.png}
-    \caption{}
+    \caption{Quantum correlation $\Delta(\varphi)$ vs. polarizer angle $\varphi$, showing violation of Bell’s inequality and agreement with quantum mechanics.}
     \label{fig:angles-graph}
 \end{figure}
 
 Using the CHSH Bell inequality and quantum mechanics, Clauser and Freedman were able to conclude that the behavior of these particles, measured by polarizer efficiencies and angles, rejected local hidden variable theories and upheld principles of entanglement. 
-Since Clauser and Freedman’s experiment, scientists have used Bell’s inequalities to further back up quantum physics and theories. These experiments are performed to explore the utility of quantum behaving particles and potentially finding a way to send information over these qubits. In our experiment, we will utilize a quantum circuit and Bell’s inequality to find a way to efficiently send information over a certain distance without being intercepted by noise or other environmental factors. 
+Since Clauser and Freedman’s experiment, scientists have used Bell’s inequalities to further back up quantum physics and theories. These experiments are performed to explore the utility of quantum-behaved particles and potentially find a way to send information over these qubits. In our experiment, we will utilize a quantum circuit and Bell’s inequality to find a way to efficiently send information over a certain distance without being intercepted by noise or other environmental factors. 
 
 
 % lit rev2 
-In Bartkiewicz, Horst, Lemr, and Miranowicz’s experiment, they explored extremal states of quantum mechanics. While the CHSH inequality is useful for testing the quantum behavior of some particles, there are extremes where particles can be entangled, but still abide by the CHSH inequality. Similar to the EPR paradox, particles can follow classical-leaning theorems, while having quantum characteristics such as entanglement. 
-In the research paper Entanglement estimation from Bell inequality violation, scientists Bartkiewicz, Horst, Lemr, and Miranowicz used the CHSH inequality to explore states of 
-particles that have quantum characteristics but do not violate the inequality. These states are known as Werner states and are applied to the following equation: 
+\subsection{CHSH for Quantum Computation}
 
+% In Bartkiewicz, Horst, Lemr, and Miranowicz’s experiment, they explored extremal states of quantum mechanics. While the CHSH inequality is useful for testing the quantum behavior of some particles, there are extremes where particles can be entangled, but still abide by the CHSH inequality. Similar to the EPR paradox, particles can follow classical-leaning theorems, while having quantum characteristics such as entanglement. 
+% In the research paper Entanglement estimation from Bell inequality violation, scientists Bartkiewicz, Horst, Lemr, and Miranowicz used the CHSH inequality to explore states of 
+% particles that have quantum characteristics but do not violate the inequality. These states are known as Werner states and are applied to the following equation: 
+
+% $$\rho_W = p|\Psi^-\rangle \langle\Psi^-| + \frac{1 - p}{4}I \otimes I$$
+
+% where $|\Psi^-\rangle$ is the bell state $|\Psi^-\rangle = \frac{1}{\sqrt{2}} (|01\rangle - |10\rangle)$ and $p \in [0,1]$. 
+%  The CHSH inequality is violated when 
+% $\frac{1}{\sqrt{2}} < p \leq 1$
+% The particles are entangled when 
+% $\frac{1}{3} < p \leq 1$.
+% Therefore, while $\frac{1}{3} < p \leq \frac{1}{\sqrt{2}}$, the states are entangled and satisfy the CHSH inequality. 
+% The Karush-Kuhn-Tucker conditions, otherwise known as the saddle-point theorem, are applied to nonlinear programming in order to utilize the constrained optimization problem with inequalities. The four scientists used the KKT conditions as well as Lagrange multipliers which find the maximum and minimum values of a function (extremal states). From here, they explored the different concurrences of specific classes of qubits of two-qubit states. Using Monte Carlo simulations and the Horodecki measure, Bartkiewicz, Horst, Lemr, and Miranowicz were able to experiment with the boundaries of Bell’s inequality and entanglement. 
+% From this paper, we learned to acknowledge the limitations of the CHSH inequality while collecting our qubit circuit data. 
+
+
+Violation of the CHSH inequality has become a popular approach to measure entanglement on various types of quantum computers (quantum dot \cite{steinacker2025bell}, superconducting \cite{storz2023loophole}) and different types of matter. The first experimental validation of the Bell-CHSH inequality on a major quantum computer was done on IBM’s $5$ qubit computer in 2016. Many years later, the inequality still serves as one of the first measures of entanglement for any new quantum computer as proof of quantum mechanical properties. Besides the CHSH inequality, the three most common entanglement measures are negativity \cite{PhysRevA.65.032314}, concurrence \cite{PhysRevLett.80.2245}, and Relative Entropy of Entanglement (REE) \cite{PhysRevLett.78.2275}. While CHSH inequality violation is a great way to quantify the quality of entanglement, there remain states like the Werner states that show entanglement yet do not always violate the CHSH inequality. They are written as:
 $$\rho_W = p|\Psi^-\rangle \langle\Psi^-| + \frac{1 - p}{4}I \otimes I$$
 
 where $|\Psi^-\rangle$ is the bell state $|\Psi^-\rangle = \frac{1}{\sqrt{2}} (|01\rangle - |10\rangle)$ and $p \in [0,1]$. 
@@ -89,26 +104,20 @@ where $|\Psi^-\rangle$ is the bell state $|\Psi^-\rangle = \frac{1}{\sqrt{2}} (|
 $\frac{1}{\sqrt{2}} < p \leq 1$
 The particles are entangled when 
 $\frac{1}{3} < p \leq 1$.
-Therefore, while $\frac{1}{3} < p \leq \frac{1}{\sqrt{2}}$, the states are entangled and satisfy the CHSH inequality. 
-The Karush-Kuhn-Tucker conditions, otherwise known as the saddle-point theorem, are applied to nonlinear programming in order to utilize the constrained optimization problem with inequalities. The four scientists used the KKT conditions as well as Lagrange multipliers which find the maximum and minimum values of a function (extremal states). From here, they explored the different concurrences of specific classes of qubits of two-qubit states. Using Monte Carlo simulations and the Horodecki measure, Bartkiewicz, Horst, Lemr, and Miranowicz were able to experiment with the boundaries of Bell’s inequality and entanglement. 
-From this paper, we learned to acknowledge the limitations of the CHSH inequality while collecting our qubit circuit data. 
-
-\subsection{CHSH for Quantum Computation}
-
-Violation of the CHSH inequality has become a popular approach to measure entanglement on various types of quantum computers (quantum dot \cite{steinacker2025bell}, superconducting \cite{storz2023loophole}) and different types of matter. The first experimental validation of the Bell-CHSH inequality on a major quantum computer was done on IBM’s $5$ qubit computer in 2016. Many years later, the inequality still serves as one of the first measures of entanglement for any new quantum computer as proof of quantum mechanical properties. Besides the CHSH inequality, the three most common entanglement measures are negativity \cite{PhysRevA.65.032314}, concurrence \cite{PhysRevLett.80.2245}, and Relative Entropy of Entanglement (REE) \cite{PhysRevLett.78.2275}.
+Therefore, while $\frac{1}{3} < p \leq \frac{1}{\sqrt{2}}$, the states are entangled, but do not violate the inequality. 
 
 
 % Incomplete
-Most recently, a short study conducted in 2025 used CHSH violations to explore the success of different CNOT implementations across distant qubits on \verb|ibm_qubec| \cite{waring2025chshviolationsusingdynamic}. As the distance between the entangled qubits rose, the CHSH Parameter (S) fell as expected. They found that the "post-processing" method of generating a CNOT gave the most success, and higher fidelity readout measurements would be necessary to achieve better results.
+Most recently, a short study conducted in 2025 used CHSH violations to explore the success of different CNOT implementations across distant qubits on \verb|ibm_qubec| \cite{waring2025chshviolationsusingdynamic}. As the distance between the entangled qubits rose, the CHSH Parameter (S) fell as expected. They found that the "post-processing" method of generating a CNOT was the most successful, and higher fidelity readout measurements would be necessary to achieve better results.
 
 \section{Method}
 
-We used the library \verb|Qiskit|’s AerSimulator \cite{qiskit2024} to simulate the created circuits using noise models from real IBM Quantum backends. Before the circuits are simulated, they need to be “transpiled”, which means translated to fit the topology of the specific device and for optimization on the specific hardware. For our case when \verb|optimization_level=3|, which is the highest level of optimization and finally we mapped the qubits to be neighboring each other. 
+We used the library \verb|Qiskit|’s AerSimulator \cite{qiskit2024} to simulate the created circuits using noise models from real IBM Quantum backends. Before the circuits are simulated, they need to be “transpiled”, which means translated to fit the topology of the specific device and for optimization on the specific hardware. For our case, when \verb|optimization_level=3|, which is the highest level of optimization, and we finally mapped the qubits to be neighboring each other using a coupling map, which maps connections of qubits (ex: \hyperref[fig:coupling-map]{Figure 3}). 
 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figs/coupling_map.png}
-    \caption{The coupling map of IBM brisbane's  $127$ qubits on the Eagle r3 processor is shown above. In the bottom left are the $6$ qubits used in a sample CHSH circuit.}
+    \caption{The coupling map of \texttt{ibm\_brisbane}'s  $127$ qubits on the Eagle r3 processor is shown above. In the bottom left are the $6$ qubits used in a sample CHSH circuit.}
     \label{fig:coupling-map}
 \end{figure}
 
@@ -128,30 +137,28 @@ We used the library \verb|Qiskit|’s AerSimulator \cite{qiskit2024} to simulate
     \label{fig:circuit-basic}
 \end{figure}
 
-For the construction of our circuits, we began by creating a Bell state between the two qubits that would be Alice's and Bob’s, and then we applied different gates (based on the inputs) to change the measurement basis. When Alice was given a $0$, she would measure on a regular $Z$ basis, and given a $1$, she would measure on an $X$ basis (hence we apply a Hadamard). Traditionally the CHSH parameter’s value is maximized when Bob’ measures in the $\frac{Z+X}{\sqrt2}$ basis when given $0$ and $\frac{Z-X}{\sqrt2}$ basis when given $1$, which translates to $\frac{\pi}{4}$ rotations in the y-axis. 
+For the construction of our circuits, we began by creating a Bell state between the two qubits that would be Alice's and Bob’s, and then we applied different gates (based on the inputs) to change the measurement basis. When Alice was given a $0$, she would measure on a regular $Z$ basis, and given a $1$, she would measure on an $X$ basis (hence we apply a Hadamard). Traditionally the CHSH parameter’s value is maximized when Bob’ measures in the $\frac{Z+X}{\sqrt2}$ basis when given $0$ and $\frac{Z-X}{\sqrt2}$ basis when given $1$, which translates to $\frac{\pi}{4}$ rotations in the y-axis (see the example circuit in \hyperref[fig:circuit-basic]{Figure 4}). 
 
 In our case we tested 43 different phases between $\frac{\pi}{2}$ to $3\pi$. We chose 43 phases because it was the only number of phases between 31 and 100 that equally spaced intervals would include the optimal phase $\frac{\pi}{4}$. We also test on three different noise models (using \verb|NoiseModel.from_backend(backend)|) for the three backends: \verb|ibm_brisbane|, \verb|ibm_torino|, and \verb|ibm_sherbrooke|, which all have a heavy hex topology. The only difference is the processor, \verb|ibm_torino| has the Heron R1, and the rest have the Eagle R3. For each noise model, we try distances from $2$ qubits (standard circuit) to $12$ qubits.
-
-\section{Findings}
 
 
 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figs/max vs qubit distance.png}
-    \caption{}
+    \caption{Entangling qubits from $2$ (neighboring qubits) up to $12$ (10 qubits in between) for the backends: \texttt{ibm\_brisbane} (blue dots), \texttt{ibm\_torino} (orange dots), and \texttt{ibm\_sherbrooke} (green dots). On the y-axis is the $\max|S|$ value found after running the corresponding circuit. The blue shaded region from $2$ to $2\sqrt{2}$ is where the CHSH inequality is violated; the closer the value to $2\sqrt{2}$, the better quality the entanglement.}
     \label{fig:all}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{figs/torino_anamoly.png}
-    \caption{}
+    \caption{A graph of phase values vs the CHSH Parameter $S$. The areas where the CHSH inequality is violated are shaded in blue ($2$ to $2\sqrt{2}$). This graph was created as a result of running a CHSH violating circuit between neighboring qubits using the \texttt{ibm\_torino} noise model. Even at the optimal rotation ($\frac{\pi}{4}$), the circuit does not produce an $S$ value greater than 2.}
     \label{fig:torino}
 \end{figure}
 
 \section{Discussion}
-The results were slightly unexpected because usually, if the qubit distance is getting longer, it means a deeper circuit is required to entangle the two qubits. This means that, in theory, more errors can occur. This implies that the $\max(|S|)$ should be lower. Interestingly, even though  \verb|ibm_torino| uses a newer processor, it has more two-qubit errors than the other two smaller backends. Overall, \verb|ibm_sherbrooke| performed the best. We assume that this is not because of the number of repetitions or \verb|SHOTS|, because we used 10000, which means that these results must have been very consistent for them to change the maximum value in an unexpected way. The biggest outlier is the `\verb|ibm_torino| maximum $S$ value at $2$ qubits, since this is the base circuit, and yet it performs the worst on it.
+The results (see in \hyperref[fig:all]{Figure 5}) were slightly unexpected because usually, if the qubit distance is getting larger, it means a deeper circuit is required to entangle the two qubits. This means that, in theory, more errors can occur. This implies that the $\max(|S|)$ should be lower. Interestingly, although \verb|ibm_torino| uses a newer processor, it has more two-qubit errors than the other two smaller backends. Overall, \verb|ibm_sherbrooke| performed the best. We assume that this is not because of the number of repetitions or \verb|SHOTS|, because we used 10000, which means that these results must have been very consistent for them to change the maximum value unexpectedly. The biggest outlier is the `\verb|ibm_torino| maximum $S$ value at $2$ qubits, since this is the base circuit, and yet it performs the worst on it as seen in \hyperref[fig:torino]{Figure 6}.
 
 \section{Conclusions}
 
