@@ -1,17 +1,23 @@
-\documentclass{article}
+\documentclass[a4paper, onecolumn, 11pt, titlepage]{quantumarticle}
+\pdfoutput=1
+% \documentclass{article}
 \usepackage{graphicx} 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \bibliographystyle{plain} 
 \usepackage{hyperref}
+\usepackage[toc,page]{appendix}
 \usepackage{qcircuit}
 \hypersetup{
-     colorlinks   = true,
-     linkcolor    = blue,
-     citecolor    = blue
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Assessing Distant Qubit Entanglement via the CHSH Inequality in Noisy Quantum Environments},
+    pdfpagemode=FullScreen,
 }
 
-
-\title{CHSH on Bell’s inequalities and how we could use them to send information over distances.}
+\title{Assessing Distant Qubit Entanglement via the CHSH Inequality in Noisy Quantum Environments}
 \author{Adam Jurkowski, Mark Agib, Seaena Kim}
 \date{July 2025}
 
@@ -19,7 +25,7 @@
 \maketitle
 
 \begin{abstract}
-    Entanglement is the cornerstone of quantum computation and is essential in quantum algorithms. Generating long-range and high-quality entanglement is a necessary milestone for current hardware to reach. We attempt to quantify the quality of entanglement on a quantum computer for distant qubits using Clauser-Horne-Shimony-Holt (CHSH) inequality violations. This is done through simulations on a full circuit noise model using distances ranging from 2 to 12.
+    Entanglement is the cornerstone of quantum computation and is essential in quantum algorithms. Generating long-range and high-quality entanglement is a necessary milestone for current hardware to reach. We attempt to quantify the quality of entanglement on a quantum computer for distant qubits using Clauser-Horne-Shimony-Holt (CHSH) inequality violations. This is done through simulations on a full circuit noise model using distances ranging from $2$ to $12$.
 \end{abstract}
 
 
@@ -110,9 +116,11 @@ Therefore, while $\frac{1}{3} < p \leq \frac{1}{\sqrt{2}}$, the states are entan
 % Incomplete
 Most recently, a short study conducted in 2025 used CHSH violations to explore the success of different CNOT implementations across distant qubits on \verb|ibm_qubec| \cite{waring2025chshviolationsusingdynamic}. As the distance between the entangled qubits rose, the CHSH Parameter (S) fell as expected. They found that the "post-processing" method of generating a CNOT was the most successful, and higher fidelity readout measurements would be necessary to achieve better results.
 
+Our work aims to answer the question: \textit{How can the CHSH parameter be used to measure the quality of entanglement on distant qubits based on noisy simulations of quantum computers?} We answer this question with a method similar to \cite{waring2025chshviolationsusingdynamic} using noisy simulations based on real IBM Quantum backends.
+
 \section{Method}
 
-We used the library \verb|Qiskit|’s AerSimulator \cite{qiskit2024} to simulate the created circuits using noise models from real IBM Quantum backends. Before the circuits are simulated, they need to be “transpiled”, which means translated to fit the topology of the specific device and for optimization on the specific hardware. For our case, when \verb|optimization_level=3|, which is the highest level of optimization, and we finally mapped the qubits to be neighboring each other using a coupling map, which maps connections of qubits (ex: \hyperref[fig:coupling-map]{Figure 3}). 
+We used the library \verb|Qiskit|’s AerSimulator \cite{qiskit2024} to simulate the created circuits using noise models from real IBM Quantum backends (see code in \hyperref[secondappendix]{Appendix B}. Before the circuits are simulated, they need to be “transpiled”, which means translated to fit the topology of the specific device and for optimization on the specific hardware. For our case, when \verb|optimization_level=3|, which is the highest level of optimization, and we finally mapped the qubits to be neighboring each other using a coupling map, which maps connections of qubits (ex: \hyperref[fig:coupling-map]{Figure 3}). 
 
 \begin{figure}
     \centering
@@ -158,7 +166,11 @@ In our case we tested 43 different phases between $\frac{\pi}{2}$ to $3\pi$. We 
 \end{figure}
 
 \section{Discussion}
-The results (see in \hyperref[fig:all]{Figure 5}) were slightly unexpected because usually, if the qubit distance is getting larger, it means a deeper circuit is required to entangle the two qubits. This means that, in theory, more errors can occur. This implies that the $\max(|S|)$ should be lower. Interestingly, although \verb|ibm_torino| uses a newer processor, it has more two-qubit errors than the other two smaller backends. Overall, \verb|ibm_sherbrooke| performed the best. We assume that this is not because of the number of repetitions or \verb|SHOTS|, because we used 10000, which means that these results must have been very consistent for them to change the maximum value unexpectedly. The biggest outlier is the `\verb|ibm_torino| maximum $S$ value at $2$ qubits, since this is the base circuit, and yet it performs the worst on it as seen in \hyperref[fig:torino]{Figure 6}.
+After running the noisy simulations on three different backends for $11$ distances each, we stored our results in a \verb|.json| file. While we got $43$ different $S$ values, most did not violate the inequality. This was expected because even in noiseless simulations, only certain changes of Bob’s measurement basis can line up with Alice’s measurement basis. The optimal rotation in the y-axis is actually multiples of $\frac{\pi}{4}$ (see \hyperref[firstappendix]{Appendix A}), which is where the circuit usually violates the inequality. 
+
+The results (see in \hyperref[fig:all]{Figure 5}) were slightly unexpected because usually, if the qubit distance is getting larger, it means a deeper circuit is required to entangle the two qubits. This means that, in theory, more errors can occur. This implies that the $\max(|S|)$ should be lower. Interestingly, although \verb|ibm_torino| uses a newer processor, it has more two-qubit errors than the other two smaller backends. Overall, \verb|ibm_sherbrooke| performed the best. We assume that this is not because of the number of repetitions or \verb|SHOTS|, because we used 10000, which means that these results must have been very consistent for them to change the maximum value unexpectedly. The biggest outlier is the `\verb|ibm_torino| maximum $S$ value at $2$ qubits, since this is the base circuit, and yet it performs the worst on it as seen in \hyperref[fig:torino]{Figure 6}. We theorize that these deviations were the cause of heavy amounts of noise, reversing what the actual result should have been, causing the parameter values to appear larger. 
+
+It is also worth noting that, unlike other cases \cite{storz2023loophole}, \cite{steinacker2025bell}, \cite{Zhong_2019}, we did not have to worry about the effects of "loopholes" as we ran a simulation. One must also consider that our method of measuring the violation of the inequality was based on the CHSH game, experimentally realized in \cite{PhysRevLett.49.91} and a first description of non-local games in \cite{cleve2010consequenceslimitsnonlocalstrategies}. Another such way to measure violation in an analytical way using the CHSH inequality is based on Horodecki et al. \cite{HORODECKI1995340, HORODECKI1996223} using Pauli observables \cite{PhysRevA.88.052105}, \cite{Kalaga_2024}. Future researchers are recommended to try using Horodecki measurements, as we theorize they may result in better results under strenuous noise than the CHSH game method.
 
 \section{Conclusions}
 
@@ -171,5 +183,79 @@ Furthermore, we used the Qiskit library to create noise models, \verb|ibm_brisba
 \newpage
 \bibliography{refs}
 
+\newpage{}
+
+\begin{appendices}
+\section{Supplementary Information}\label{firstappendix}
+
+\subsection{Why $\frac{\pi}{4}?$}
+
+The reason why $\frac{\pi}{4}$ is the optimal rotation in the y-axis is because of what basis Bob is measuring in. To achieve Tsirelson's bound ($S = 2\sqrt2$), you start in the entangled Bell state and then change the measurement basis based on values of $x$ and $y$. 
+
+The following is based on a \href{ttps://math.ucsd.edu/sites/math.ucsd.edu/files/XiaoFeng.pdf}{proof} by Xiao Feng.
+
+Let Alice have the angles to measure in be $\alpha, \alpha'$, and Bob have $\beta, \beta'$, and they share the Bell state. Then their correlation is
+$$E(\alpha, \beta) = cos[2(\alpha -\beta)]$$
+and the CHSH parameter becomes:
+$$S = cos[2(\alpha -\beta)] - cos[2(\alpha' -\beta)] + cos[2(\alpha -\beta')] - cos[2(\alpha' -\beta')]$$
+
+If we let $\alpha = 0, \alpha = \pi/2$ and $\beta = \theta, \beta' = \theta$ and we subsistue into the CHSH paramter we have:
+$$S(\theta) = 4cos(2\theta)$$ 
+amd to maximize $S(\theta)$ we need to find where the max of $cos(2\theta)$ occurs. We find that $\theta = \pi$ and $S$ can equal $4$, but this isn't physically realizable, and the max of $S$ is further below that, which is why $\theta$ can only go up to $\frac{\pi}{4}$.
+
+\subsection{Other CHSH Inequality Formalisms}
+Some papers denote the CHSH inequality a little differently. It is denoted as 
+
+$$\left|\text{Tr}\left(\rho \mathcal{B}_{CHSH}\right) \right| \leq 2$$
+
+(\textit{Note}: This stems from the fact that the expectation value of an observable is the trace of the density matrix and the observable.)They describe the CHSH parameter or operator as 
+
+$$\mathcal{B}_{CHSH} = \vec{a} \cdot \vec{\sigma} \otimes \left(\vec{b} +\vec{b}' \right) \cdot \vec{\sigma} + \vec{a}' \cdot \vec{\sigma} \otimes \left(\vec{b} - \vec{b}'\right) \cdot \vec{\sigma}$$
+
+where $\vec{a}$, $\vec{a}'$ and $\vec{b}$, $\vec{b}'$ are unit vectors in $\mathfrak{R}^3$ and describe the measurements on Alice and Bob's sides, respectively, and $\sigma$ are vectors of the Pauli matrices. (*Note*: Taking the dot product of Alice's unit vector and the Pauli matrix is an observable, and it corresponds to measuring on the Pauli matrix's axis.) On a further side note (skip ahead if you understand), the correlation functions described in the classic CHSH expression $E(a, b)$ can be written mathematically as 
+
+$E(\vec{a},\vec{b}) = \text{Tr} \left[\rho \left(\vec{a} \cdot \vec{\sigma} \otimes \vec{b} \cdot \vec{\sigma} \right) \right]$
+
+And so when we substitute in for those terms, we get
+
+$$ \text{Tr} \left[ \rho \left(\vec{a} \cdot \vec{\sigma} \otimes \vec{b}\cdot \vec{\sigma} + \vec{a} \cdot \vec{\sigma} \otimes \vec{b}' \cdot\vec{\sigma} + \vec{a}' \cdot \vec{\sigma} \otimes \vec{b} \cdot \vec{\sigma} - \vec{a}' \cdot \vec{\sigma} \otimes \vec{b}' \cdot \vec{\sigma} \right) \right] $$
+
+(pretty long lol). But once we group (try this yourself), we get
+
+$$\vec{a} \cdot \vec{\sigma} \otimes \left(\vec{b} +\vec{b}' \right) \cdot \vec{\sigma} + \vec{a}' \cdot \vec{\sigma} \otimes \left(\vec{b} - \vec{b}'\right) \cdot \vec{\sigma}$$
+
+which happens to be exactly what the CHSH operator was (check for yourself). That's because these are equivalent ways to write the same thing.
+
+
+And the density matrix $\rho$ can be expressed as 
+
+$$\rho = \frac{1}{4}\left(I\otimes I + \vec{r} \cdot \vec{\sigma} \otimes I + I \otimes \vec{s} \cdot \vec{\sigma} + \sum_{n, m = 1}^{3}{T_{n,m}\sigma_n \otimes \sigma_m}\right) $$
+
+where $T_{n,m} = \text{Tr} \left[\rho \left(\sigma_i \otimes \sigma_j \right)\right]$ is the corrleation matrix and $\vec{r}$ and $\vec{s}$ are unit vectors in $\mathfrak{R}^3$. Now you might be wondering what all that means. Well, it's based on a representation of the Bloch sphere for two qubits. The $I \otimes I$ is the identity operator applied on the first and second qubits. It's then added to the dot product of the Pauli matrices on the unit vector tensored with the identity operator like $(r_1 \sigma_1 +r_2 \sigma_2 + r_3 \sigma_3) \otimes I$ that. You then do the same for the second qubit (on $\vec{s}$).
+
+Finally, in the summation  $\sigma_n \otimes \sigma_m$ is all the possible combinations of Pauli operators on $1$ and $2$ (hence the sum to $3$), and the correlation matrix describes how strongly the qubits are correlated along the axes. Since $ \text{Tr}(\rho) = 1$ the factor $\frac{1}{4}$ keeps the trace $1$.
+
+For the Horodecki measure, we take the method of the CHSH operator $\mathcal{B}_{CHSH}$. Again we define the corelation matrix as $T_{i,j} = \text{Tr} \left[\rho \left(\sigma_i \otimes \sigma_j \right)\right]$. 
+
+And the maximum possible value for the CHSH operator given the density matrix $\rho$ is
+
+$$\max_{\mathcal{B}_{CHSH}}{|\text{Tr}(\rho \mathcal{B}_{CHSH})|} = 2 \sqrt{\mathcal{M}(\rho)}$$
+
+where $\mathcal{M}(\rho) = \max_{i > j}{(u_i +u_j)}$ where $u_i$ are eigenvalues of $T^\dagger T$. And in this representation, the CHSH inequality is only violated iff $\mathcal{M}(\rho) > 1$. We can then define
+
+$$B(\rho) \equiv \sqrt{\mathcal{M}(\rho) - 1}$$ 
+
+Some may also say:
+
+$$B(\rho) \equiv \sqrt{\max[0, \mathcal{M}(\rho) - 1]}$$ 
+
+just so that the $B$ remains a real value function, and we call it the Horodecki measure of the CHSH inequality. Its values range from $0$ to $1$, with larger values meaning more entangled.
+
+Sources: \cite{PhysRevA.88.052105} and \cite{Kalaga_2024}.
+
+
+\section{Code}\label{secondappendix}
+Find the code at: \href{https://github.com/MarkAppprogrammer/CHSH-Ineq/tree/main}{https://github.com/MarkAppprogrammer/CHSH-Ineq/}.
+\end{appendices}
 
 \end{document}
